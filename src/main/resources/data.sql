@@ -1,2 +1,2 @@
-INSERT Into Task(id, title, estimate) VALUES(1, 'First task', 123);
-INSERT Into Task(id, title, estimate) VALUES(2, 'Second task', 100500);
+INSERT Into Task(title, estimate) VALUES('First task', 123);
+INSERT Into Task(title, estimate) VALUES('Second task', 100500);
