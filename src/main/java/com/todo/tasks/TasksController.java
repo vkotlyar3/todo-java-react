@@ -27,7 +27,19 @@ public class TasksController {
 
     @PostMapping("/tasks")
     public Task createTask(@RequestBody Task task) {
-        Task savedTask = tasksRepository.save(task);
-        return savedTask;
+        return tasksRepository.save(task);
+    }
+
+    @PutMapping("/tasks")
+    public Optional<Task> updateTask(@RequestBody Task task) {
+        Optional<Task> optionalTask = tasksRepository.findById(task.getId());
+
+        optionalTask.ifPresent(foundTask -> {
+            foundTask.setEstimate(task.getEstimate());
+            foundTask.setTitle(task.getTitle());
+            tasksRepository.save(foundTask);
+        });
+
+        return tasksRepository.findById(task.getId());
     }
 }
